@@ -34,6 +34,10 @@ Rest, despliegues, heroku, mlab, git, github, sockets, subida de archivos en Nod
 * [Package.json artículo](https://medium.com/noders/t%C3%BA-yo-y-package-json-9553929fb2e3)
 * [Draw.io](https://app.diagrams.net/)  
 * [Mongoose](https://mongoosejs.com/)
+* [Fetch](https://www.npmjs.com/package/fetch)
+* [Axios](https://www.npmjs.com/package/axios)
+* [Reqres](https://reqres.in/)
+* []()
 
 ## Instalar NodeJS v14.x:  
 
