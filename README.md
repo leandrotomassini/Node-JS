@@ -40,6 +40,7 @@ Rest, despliegues, heroku, mlab, git, github, sockets, subida de archivos en Nod
 * [Mapbox](https://www.mapbox.com/)
 * [Geocoding](https://docs.mapbox.com/api/search/geocoding/)
 * [Dotenv](https://www.npmjs.com/package/dotenv)
+* [Openweathermap](https://openweathermap.org/)
 * []()
 
 ## Instalar NodeJS v14.x:  
