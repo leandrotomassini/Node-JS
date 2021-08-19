@@ -43,7 +43,7 @@ Rest, despliegues, heroku, mlab, git, github, sockets, subida de archivos en Nod
 * [Openweathermap](https://openweathermap.org/)
 * [handlebarsjs](https://handlebarsjs.com/)
 * [Pillarjs](https://github.com/pillarjs/hbs)
-* []()
+* [Cors](https://www.npmjs.com/package/cors)
 * []()
 * []()
 * []()
@@ -68,3 +68,15 @@ apt-get install -y nodejs
 
 
 
+## Apps
+
+* [Http Express HBS](https://http-express-hbs.herokuapp.com/)
+* []()
+* []()
+* []()
+* []()
+* []()
+* []()
+* []()
+* []()
+* []()
