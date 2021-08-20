@@ -44,6 +44,12 @@ Rest, despliegues, heroku, mlab, git, github, sockets, subida de archivos en Nod
 * [handlebarsjs](https://handlebarsjs.com/)
 * [Pillarjs](https://github.com/pillarjs/hbs)
 * [Cors](https://www.npmjs.com/package/cors)
+* [Códigos de estados](https://github.com/leandrotomassini/Node-JS/blob/main/workspace/http-response-codes.pdf)
+* [Mongoosejs](https://mongoosejs.com/)
+* [Express validator](https://www.npmjs.com/package/express-validator)
+* []()
+* []()
+* []()
 * []()
 * []()
 * []()
@@ -71,7 +77,7 @@ apt-get install -y nodejs
 ## Apps
 
 * [Http Express HBS](https://http-express-hbs.herokuapp.com/)
-* []()
+* [Rest Server Inicial Node](https://rest-server-inicial.herokuapp.com/)
 * []()
 * []()
 * []()
