@@ -1,102 +1,112 @@
-const { response } = require("express");
-const { ObjectId } = require("mongoose").Types;
-const { Usuario, Categoria, Producto } = require("../models");
+const { response } = require('express');
+const { ObjectId } = require('mongoose').Types;
 
-const coleccionesPermitidas = ["usuarios", "categoria", "productos", "roles"];
+const { Usuario, Categoria, Producto } = require('../models');
 
-const buscarUsuarios = async (termino = "", res = response) => {
-  const esMongoId = ObjectId.isValid(termino);
+const coleccionesPermitidas = [
+    'usuarios',
+    'categorias',
+    'productos',
+    'roles'
+];
 
-  if (esMongoId) {
-    const usuario = await Usuario.findById(termino);
-    return res.json({
-      results: usuario ? [usuario] : [],
+const buscarUsuarios = async( termino = '', res = response ) => {
+
+    const esMongoID = ObjectId.isValid( termino ); // TRUE 
+
+    if ( esMongoID ) {
+        const usuario = await Usuario.findById(termino);
+        return res.json({
+            results: ( usuario ) ? [ usuario ] : []
+        });
+    }
+
+    const regex = new RegExp( termino, 'i' );
+    const usuarios = await Usuario.find({
+        $or: [{ nombre: regex }, { correo: regex }],
+        $and: [{ estado: true }]
     });
-  }
 
-  const regex = new RegExp(termino, "i");
-
-  const usuarios = await Usuario.find({
-    $or: [{ nombre: regex }, { correo: regex }],
-    $and: [{ estado: true }],
-  });
-
-  res.json({
-    results: usuarios,
-  });
-};
-
-const buscarCategorias = async (termino = "", res = response) => {
-  const esMongoId = ObjectId.isValid(termino);
-
-  if (esMongoId) {
-    const categoria = await Categoria.findById(termino);
-    return res.json({
-      results: categoria ? [categoria] : [],
+    res.json({
+        results: usuarios
     });
-  }
 
-  const regex = new RegExp(termino, "i");
+}
 
-  const categorias = await Categoria.find({ nombre: regex, estado: true });
+const buscarCategorias = async( termino = '', res = response ) => {
 
-  res.json({
-    results: categorias,
-  });
-};
+    const esMongoID = ObjectId.isValid( termino ); // TRUE 
 
-const buscarProductos = async (termino = "", res = response) => {
-  const esMongoId = ObjectId.isValid(termino);
+    if ( esMongoID ) {
+        const categoria = await Categoria.findById(termino);
+        return res.json({
+            results: ( categoria ) ? [ categoria ] : []
+        });
+    }
 
-  if (esMongoId) {
-    const producto = await (
-      await Producto.findById(termino)
-    ).populate("categoria", "nombre");
-    return res.json({
-      results: producto ? [producto] : [],
+    const regex = new RegExp( termino, 'i' );
+    const categorias = await Categoria.find({ nombre: regex, estado: true });
+
+    res.json({
+        results: categorias
     });
-  }
 
-  const regex = new RegExp(termino, "i");
+}
 
-  const productos = await Producto.find({
-    nombre: regex,
-    estado: true,
-  }).populate("categoria", "nombre");
+const buscarProductos = async( termino = '', res = response ) => {
 
-  res.json({
-    results: productos,
-  });
-};
+    const esMongoID = ObjectId.isValid( termino ); // TRUE 
 
-const buscar = (req, res = response) => {
-  const { coleccion, termino } = req.params;
+    if ( esMongoID ) {
+        const producto = await Producto.findById(termino)
+                            .populate('categoria','nombre');
+        return res.json({
+            results: ( producto ) ? [ producto ] : []
+        });
+    }
 
-  //   if (!coleccionesPermitidas.includes(coleccion)) {
-  //     return res.status(400).json({
-  //       msg: `Las colecciones permitidas son: ${coleccionesPermitidas}`,
-  //     });
-  //   }
+    const regex = new RegExp( termino, 'i' );
+    const productos = await Producto.find({ nombre: regex, estado: true })
+                            .populate('categoria','nombre')
 
-  switch (coleccion) {
-    case "usuarios":
-      buscarUsuarios(termino, res);
-      break;
-    case "categorias":
-      buscarCategorias(termino, res);
-      break;
-    case "productos":
-      buscarProductos(termino, res);
-      break;
-    case "roles":
-      break;
-    default:
-      res.status(500).json({
-        msg: "Se me olvido hacer esta búsqueda.",
-      });
-  }
-};
+    res.json({
+        results: productos
+    });
+
+}
+
+
+const buscar = ( req, res = response ) => {
+    
+    const { coleccion, termino  } = req.params;
+
+    if ( !coleccionesPermitidas.includes( coleccion ) ) {
+        return res.status(400).json({
+            msg: `Las colecciones permitidas son: ${ coleccionesPermitidas }`
+        })
+    }
+
+    switch (coleccion) {
+        case 'usuarios':
+            buscarUsuarios(termino, res);
+        break;
+        case 'categorias':
+            buscarCategorias(termino, res);
+        break;
+        case 'productos':
+            buscarProductos(termino, res);
+        break;
+
+        default:
+            res.status(500).json({
+                msg: 'Se le olvido hacer esta búsquda'
+            })
+    }
+
+}
+
+
 
 module.exports = {
-  buscar,
-};
+    buscar
+}
