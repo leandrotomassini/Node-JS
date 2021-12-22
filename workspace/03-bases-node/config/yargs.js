@@ -1,33 +1,36 @@
-const { boolean } = require("yargs");
-
-const argv = require("yargs")
-  .option("b", {
-    alias: "base",
-    type: "number",
-    demandOption: true,
-    description: 'Base de la tabla de multiplicar.'
-  })
-  .option("l", {
-    alias: "listar",
-    type: boolean,
-    demandOption: false,
-    default: false,
-    description: 'Listar en consola la tabla de multiplicar.'
-  })
-  .option(
-    "h", {
-      alias: 'hasta',
-      type: "number",
-      demandOption: false,
-      default: 10,
-      description: 'Hasta que número hay que multiplicar.'
-    }
-  )
-  .check((argv, option) => {
-    if (isNaN(argv.b)) {
-      throw "La base tiene que ser un número.";
-    }
-    return true;
-  }).argv;
+const argv = require('yargs')
+    .option('b', {
+        alias: 'base',
+        type: 'number',
+        demandOption: true,
+        describe: 'Is the base of the multiplication table.'
+    })
+    .check((argv, options) => {
+        if (isNaN(argv.b)) {
+            throw 'The base has to be a number.'
+        }
+        return true;
+    })
+    .option('u', {
+        alias: 'until',
+        type: 'number',
+        demandOption: false,
+        default: '10',
+        describe: 'Until what number do you want to multipliply.'
+    })
+    .check((argv, options) => {
+        if (isNaN(argv.u)) {
+            throw 'The limit must be a number.'
+        }
+        return true;
+    })
+    .option('l', {
+        alias: 'list',
+        type: 'boolean',
+        demandOption: false,
+        default: false,
+        describe: 'List the multiplication table per screen.'
+    })
+    .argv;
 
 module.exports = argv;
