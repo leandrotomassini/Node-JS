@@ -1,2 +1,3 @@
 # Output files
 /data/*.txt
+node_modules/
