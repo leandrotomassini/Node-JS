@@ -1,10 +1,8 @@
-const { crearArchivo } = require("./helpers/multiplicar");
+const { createTable } = require('./helpers/multiplication');
 const argv = require('./config/yargs');
 
-const base = argv.b;
-const listar = argv.l;
-const limite = argv.h;
+console.clear();
 
-crearArchivo(base,listar, limite)
-.then((nombreArchivo) => console.log(nombreArchivo))
-.catch((err) => console.log(err));
+createTable(argv.base, argv.l, argv.u)
+    .then(outgoingMessage => console.log(`${outgoingMessage}`))
+    .catch(err => console.log(`${err}`));
