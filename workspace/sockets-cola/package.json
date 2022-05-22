@@ -1,11 +1,10 @@
 {
-  "name": "09-cola-websocket-server",
+  "name": "09-socket-colas",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "start:dev": "nodemon app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",

@@ -12,7 +12,6 @@ const socketController = socket => {
         const id = 123456;
         callback(id);
         socket.broadcast.emit('enviar-mensaje', payload);
-
     });
 };
 
